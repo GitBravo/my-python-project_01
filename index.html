@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Python 계산기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background: white;
+            padding: 30px;
+            width: 360px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 12px;
+            background: #eef2ff;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>간단한 계산기</h2>
+
+        <form method="POST" action="/calculate">
+            <input type="number" step="any" name="num1" placeholder="첫 번째 숫자" required>
+
+            <select name="operator">
+                <option value="+">더하기 (+)</option>
+                <option value="-">빼기 (-)</option>
+                <option value="*">곱하기 (*)</option>
+                <option value="/">나누기 (/)</option>
+            </select>
+
+            <input type="number" step="any" name="num2" placeholder="두 번째 숫자" required>
+
+            <button type="submit">계산하기</button>
+        </form>
+
+        <div class="result">
+            결과: {{ result }}
+        </div>
+    </div>
+</body>
+</html>
