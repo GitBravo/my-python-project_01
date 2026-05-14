@@ -16,6 +16,16 @@ function appendValue(value) {
     updateDisplay();
 }
 
+function setOperator(op) {
+    if (previousInput !== "" && currentInput !== "0") {
+        calculate();
+    }
+    previousInput = currentInput;
+    operator = op;
+    currentInput = "0";
+    updateDisplay();
+}
+
 function clearDisplay() {
     currentInput = "0";
     previousInput = "";
@@ -53,6 +63,8 @@ function calculate() {
             case "/":
                 if (curr === 0) {
                     currentInput = "Error";
+                    previousInput = "";
+                    operator = "";
                     updateDisplay();
                     return;
                 }
@@ -66,6 +78,8 @@ function calculate() {
         updateDisplay();
     } catch (e) {
         currentInput = "Error";
+        previousInput = "";
+        operator = "";
         updateDisplay();
     }
 }
@@ -74,16 +88,7 @@ document.addEventListener("keydown", function(e) {
     if (e.key >= "0" && e.key <= "9") {
         appendValue(e.key);
     } else if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
-        if (previousInput === "") {
-            previousInput = currentInput;
-            operator = e.key;
-            currentInput = "0";
-        } else {
-            calculate();
-            previousInput = currentInput;
-            operator = e.key;
-            currentInput = "0";
-        }
+        setOperator(e.key);
     } else if (e.key === "Enter") {
         calculate();
     } else if (e.key === "Backspace") {
