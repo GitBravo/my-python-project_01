@@ -2,110 +2,56 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>계산기</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .calculator {
-            background: white;
-            padding: 20px;
-            width: 300px;
-            border-radius: 12px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-        }
-
-        #display {
-            width: 100%;
-            height: 50px;
-            font-size: 24px;
-            text-align: right;
-            margin-bottom: 15px;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-        }
-
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-        }
-
-        button {
-            padding: 15px;
-            font-size: 18px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            background: #e0e0e0;
-        }
-
-        button:hover {
-            background: #d0d0d0;
-        }
-
-        button.operator {
-            background: #2563eb;
-            color: white;
-        }
-
-        button.operator:hover {
-            background: #1d4ed8;
-        }
-
-        button.equals {
-            background: #22c55e;
-            color: white;
-        }
-
-        button.equals:hover {
-            background: #16a34a;
-        }
-
-        button.clear {
-            background: #ef4444;
-            color: white;
-        }
-
-        button.clear:hover {
-            background: #dc2626;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="calculator">
-        <input type="text" id="display" readonly>
-        <div class="buttons">
-            <button class="clear" onclick="clearDisplay()">C</button>
-            <button onclick="setOperator('/')" class="operator">÷</button>
-            <button onclick="setOperator('*')" class="operator">×</button>
-            <button onclick="setOperator('-')" class="operator">-</button>
-            
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button onclick="appendValue('+')" class="operator">+</button>
-            
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button onclick="appendValue('.')">.</button>
-            
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button onclick="calculate()" class="equals">=</button>
-            
-            <button onclick="appendValue('0')" style="grid-column: span 2;">0</button>
-            <button onclick="backspace()">⌫</button>
+<body class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+    <div class="w-full max-w-[320px] bg-white rounded-2xl p-6 shadow-lg">
+        <input type="text" id="display" readonly
+            class="w-full h-14 mb-5 px-4 text-right text-3xl font-light text-gray-800 bg-gray-50 rounded-xl border-b-2 border-indigo-500 outline-none"
+            placeholder="0">
+        <div class="grid grid-cols-4 gap-2">
+            <button onclick="clearDisplay()"
+                class="h-14 text-lg font-semibold rounded-xl bg-rose-100 hover:bg-rose-200 text-rose-600 active:scale-95 transition-all duration-150">C</button>
+            <button onclick="setOperator('/')"
+                class="h-14 text-lg font-semibold rounded-xl bg-indigo-100 hover:bg-indigo-200 text-indigo-700 active:scale-95 transition-all duration-150">÷</button>
+            <button onclick="setOperator('*')"
+                class="h-14 text-lg font-semibold rounded-xl bg-indigo-100 hover:bg-indigo-200 text-indigo-700 active:scale-95 transition-all duration-150">×</button>
+            <button onclick="setOperator('-')"
+                class="h-14 text-lg font-semibold rounded-xl bg-indigo-100 hover:bg-indigo-200 text-indigo-700 active:scale-95 transition-all duration-150">−</button>
+
+            <button onclick="appendValue('7')"
+                class="h-14 text-lg font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">7</button>
+            <button onclick="appendValue('8')"
+                class="h-14 text-lg font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">8</button>
+            <button onclick="appendValue('9')"
+                class="h-14 text-lg font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">9</button>
+            <button onclick="setOperator('+')"
+                class="h-14 text-lg font-semibold rounded-xl bg-indigo-100 hover:bg-indigo-200 text-indigo-700 active:scale-95 transition-all duration-150">+</button>
+
+            <button onclick="appendValue('4')"
+                class="h-14 text-lg font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">4</button>
+            <button onclick="appendValue('5')"
+                class="h-14 text-lg font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">5</button>
+            <button onclick="appendValue('6')"
+                class="h-14 text-lg font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">6</button>
+            <button onclick="appendValue('.')"
+                class="h-14 text-lg font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">.</button>
+
+            <button onclick="appendValue('1')"
+                class="h-14 text-lg font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">1</button>
+            <button onclick="appendValue('2')"
+                class="h-14 text-lg font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">2</button>
+            <button onclick="appendValue('3')"
+                class="h-14 text-lg font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">3</button>
+            <button onclick="calculate()"
+                class="h-14 text-xl font-bold rounded-xl bg-indigo-500 hover:bg-indigo-600 text-white shadow-md active:scale-95 transition-all duration-150">=</button>
+
+            <button onclick="appendValue('0')"
+                class="col-span-2 h-14 text-lg font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">0</button>
+            <button onclick="backspace()"
+                class="h-14 text-xl font-medium rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 active:scale-95 transition-all duration-150">⌫</button>
         </div>
     </div>
     <script src="script.js"></script>
